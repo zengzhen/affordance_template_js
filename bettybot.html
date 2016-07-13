@@ -38,9 +38,9 @@
     // Setup a client to listen to TFs.
     var tfClient = new ROSLIB.TFClient({
       ros : ros,
-      angularThres : 0.005,
-      transThres : 0.005,
-      rate : 20.0,
+      angularThres : 0.01,
+      transThres : 0.01,
+      rate : 10.0,
       fixedFrame : '/base_link'
     });
 
@@ -79,13 +79,14 @@
     });
 
     // Setup the Point Cloud client.
-//     var pointCloud2 = new ROS3D.PointCloud2({
-//       ros : ros,
-//       tfClient : tfClient,
-//       topic : '/head_camera/depth_downsample/points',
-//       size : 0.01,
-//       rootObject : viewer.scene
-//     });
+    var pointCloud2 = new ROS3D.PointCloud2({
+      ros : ros,
+      tfClient : tfClient,
+//       topic : '/head_camera/depth_downsample/points_throttle',
+      topic : '/head_camera/depth_downsample/points',
+      size : 0.01,
+      rootObject : viewer.scene
+    });
     var at = new AffordanceTemplateInterface({ros: ros})
   }
 
