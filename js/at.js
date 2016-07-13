@@ -99,7 +99,7 @@ function make_box(id, label_txt, root)
 AffordanceTemplateInterface.prototype.make_buttons = function() 
 {
     var that = this;
-    var path = "affordance_template_js/images/"
+    var path = "images/"
     var controls = document.getElementById("controls");
     controls.innerHTML = '';
 

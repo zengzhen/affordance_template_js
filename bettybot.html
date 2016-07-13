@@ -9,7 +9,7 @@
 <script type="text/javascript" src="http://cdn.robotwebtools.org/ros3djs/current/ros3d.min.js"></script>
 <script type="text/javascript" src="http://cdn.robotwebtools.org/threejs/current/ColladaLoader.min.js"></script>
 <script type="text/javascript" src="http://cdn.robotwebtools.org/ColladaAnimationCompress/current/ColladaLoader2.min.js"></script>
-<script type="text/javascript" src="affordance_template_js/at.js"></script>
+<script type="text/javascript" src="js/at.js"></script>
 <!-- <script type="text/javascript" src="config.js"></script> -->
 
 <script type="text/javascript">
@@ -75,13 +75,13 @@
 //     });
 
     // Setup the Point Cloud client.
-    var pointCloud2 = new ROS3D.PointCloud2({
-      ros : ros,
-      tfClient : tfClient,
-      topic : '/head_camera/depth_downsample/points',
-      size : 0.01,
-      rootObject : viewer.scene
-    });
+//     var pointCloud2 = new ROS3D.PointCloud2({
+//       ros : ros,
+//       tfClient : tfClient,
+//       topic : '/head_camera/depth_downsample/points',
+//       size : 0.01,
+//       rootObject : viewer.scene
+//     });
     var at = new AffordanceTemplateInterface({ros: ros})
   }
 
