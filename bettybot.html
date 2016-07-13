@@ -9,8 +9,8 @@
 <script type="text/javascript" src="http://cdn.robotwebtools.org/ros3djs/current/ros3d.min.js"></script>
 <script type="text/javascript" src="http://cdn.robotwebtools.org/threejs/current/ColladaLoader.min.js"></script>
 <script type="text/javascript" src="http://cdn.robotwebtools.org/ColladaAnimationCompress/current/ColladaLoader2.min.js"></script>
+<script src="http://cdn.robotwebtools.org/threejs/current/STLLoader.min.js"></script>
 <script type="text/javascript" src="js/at.js"></script>
-<!-- <script type="text/javascript" src="config.js"></script> -->
 
 <script type="text/javascript">
 
@@ -28,8 +28,8 @@
     // Create the main viewer.
     var viewer = new ROS3D.Viewer({
       divID : 'robotdisplay',
-      width : 1024,
-      height : 720,
+      width : 800,
+      height : 600,
       antialias : true
     });
 
@@ -38,41 +38,45 @@
     // Setup a client to listen to TFs.
     var tfClient = new ROSLIB.TFClient({
       ros : ros,
-      angularThres : 0.01,
-      transThres : 0.01,
-      rate : 10.0,
-      fixedFrame : 'world'
+      angularThres : 0.005,
+      transThres : 0.005,
+      rate : 20.0,
+      fixedFrame : '/base_link'
     });
 
 
-    // Setup the URDF client.
-//     var urdfClient = new ROS3D.UrdfClient({
-//       ros : ros,
-//       param : 'robot_description',
-//       tfClient : tfClient,
-//       rootObject : viewer.scene,
-//       loader : ROS3D.COLLADA_LOADER_2
-//     });
+    // Setup the URDF client.    
+    var urdfClient = new ROS3D.UrdfClient({
+      ros : ros,
+      tfClient : tfClient,
+      param : 'robot_description', //by default
+      path : 'http://resources.robotwebtools.org/',
+      rootObject : viewer.scene,
+      loader : ROS3D.COLLADA_LOADER_2
+    });
 
 
     // Setup the marker client.
-//     var imClient = new ROS3D.InteractiveMarkerClient({
-//       ros : ros,
-//       tfClient : tfClient,
-//       topic : '/affordance_template_server',
-//       camera : viewer.camera,
-//       rootObject : viewer.selectableObjects
-//     });
+    var imClient = new ROS3D.InteractiveMarkerClient({
+      ros : ros,
+      tfClient : tfClient,
+      topic : '/fetch_interactive_controls_server',
+      camera : viewer.camera,
+      rootObject : viewer.selectableObjects,
+      loader : ROS3D.COLLADA_LOADER_2,
+      path : 'http://resources.robotwebtools.org/'
+    });
 
-//     var imClient2 = new ROS3D.InteractiveMarkerClient({
-//       ros : ros,
-//       tfClient : tfClient,
-//       topic : '/affordance_template_interactive_marker_server/update',
-//       camera : viewer.camera,
-//       rootObject : viewer.selectableObjects,
-//       loader : ROS3D.COLLADA_LOADER_2,
-//       path : 'http://resources.robotwebtools.org/'
-//     });
+    var imClient2 = new ROS3D.InteractiveMarkerClient({
+      ros : ros,
+      tfClient : tfClient,
+      topic : '/affordance_template_interactive_marker_server',
+      camera : viewer.camera,
+      rootObject : viewer.selectableObjects,
+      loader : ROS3D.COLLADA_LOADER_2,
+      path : 'http://resources.robotwebtools.org/',
+      path : 'https://bitbucket.org/traclabs/affordance_templates/src/7d91c64f7f180de53ca024ab81530dae517125f7?at=cpp-devel'
+    });
 
     // Setup the Point Cloud client.
 //     var pointCloud2 = new ROS3D.PointCloud2({
