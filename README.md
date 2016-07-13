@@ -1,5 +1,5 @@
 # affordance_template_js
+web interface for [affordance templates](http://traclabs.com/projects/affordance-templates/)
 
-### Acknowledgments
 
-This work was supported in part by NASA grant NNX13AN07A.
+
