@@ -10,11 +10,10 @@
         <remap from="topic_ns" to="/affordance_template_interactive_marker_server"/>
         <remap from="target_frame" to="/base_link" />
     </node>
-    <include>
-    <file $(find interactive_controls)/launch/fetch.launch>
+    <include file="$(find interactive_controls)/launch/fetch.launch">
     </include>
-    <include>
-    <file $(find affordance_template_server)/launch/fetch.launch>
+    <include file="$(find affordance_template_server)/launch/fetch.launch">
+    </include>
 
     <node name="throttler" pkg="topic_tools" type="throttle" args="messages /head_camera/depth_downsample/points 0.2"/>
 </launch>
