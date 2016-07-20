@@ -1,5 +1,6 @@
 /**
  * @author David V. Lu!! - davidvlu@gmail.com
+ * modified by Zhen Zeng - zengzhen@umich.edu
  */
 
 var buttons = {"start":"START",  "rwnd":"STEP_BACKWARD", "sync":"CURRENT", "ffwd":"STEP_FORWARD", "end": "END"};
@@ -10,7 +11,7 @@ var buttons = {"start":"START",  "rwnd":"STEP_BACKWARD", "sync":"CURRENT", "ffwd
 function AffordanceTemplateInterface(options) {
     options = options || {};
     var ros = options.ros;
-    var robot = options.robot || 'r2'
+    var robot = options.robot || 'fetch'
     var that = this;
     
     this.make_buttons();
